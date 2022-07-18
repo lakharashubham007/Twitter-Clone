@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Sideabar from '../components/Sideabar'
 
 const Home: NextPage = () => {
   return (
@@ -9,8 +10,14 @@ const Home: NextPage = () => {
         <title>Twitter-clone</title>
       </Head>
 
-      <h1>Hello World I'm in type script mode </h1>
-      
+      <main>
+        {/* Sidebar */}
+        <Sideabar />
+
+        {/* Feed */}
+
+        {/* Widgets */}
+      </main>
       
     </div>
   )
