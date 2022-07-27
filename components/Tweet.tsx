@@ -1,13 +1,24 @@
-import React from 'react'
-import { Tweet } from '../typing';
+import React, { useEffect, useState } from 'react'
+import { Comment, Tweet } from '../typing';
 import TimeAgo from 'react-timeago'
 import { ChatAlt2Icon, HeartIcon, SwitchHorizontalIcon, UploadIcon } from '@heroicons/react/outline';
+import { fetchComments } from '../utils/fetchComments';
 
 interface Props {
     tweet: Tweet
 }
 
 function Tweet({ tweet }: Props) {
+const [comments, setComments] = useState<Comment[]>([])
+
+  const refreshComments = async () => {
+    const comments: Comment[] = await fetchComments(tweet._id)
+    setComments(comments);
+  }
+  useEffect(() => {
+  refreshComments();
+  }, [])
+
   return (
     <div className=" flex flex-col space-x-3 border-y p-5 border-gray-100 ">
         <div className = "flex space-x-3">
@@ -51,6 +62,8 @@ function Tweet({ tweet }: Props) {
             </div>
         </div>
 
+        {/*Comments Box logic*/}
+        
     </div>
   )
 }
